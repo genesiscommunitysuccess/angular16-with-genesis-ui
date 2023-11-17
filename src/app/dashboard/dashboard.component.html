@@ -1,1 +1,36 @@
-<p>dashboard works!</p>
+<div class="container">
+  <h1>Welcome {{ user.username }}! <ion-icon name="rocket"></ion-icon></h1>
+  <p>
+    Developers generally connect to the Genesis Backend via a WebSocket.
+    You can access the authenticated socket url directly from a foundation import.
+  </p>
+  <pre>{{"import { SOCKET_URL } from '@genesislcap/foundation-auth/env';"}}</pre>
+  <p>
+    The authenticated socket url is: <code>{{ socketUrl }}</code>.
+  </p>
+  <p>
+    As part of this repo, we've encapsulated <code>@genesislcap/foundation-auth</code> within a module named
+    <code>auth</code> created via the <code>angular-cli</code>.
+  </p>
+  <p>
+    From there, we re-exported a couple of tokens our application likely needs, while also adding them to the Angular DI
+    container. This was done purely to provide an more comprehensive example, and is entirely optional.
+  </p>
+  <p>
+    Import and use the value directly from the <code>auth</code> module:
+  </p>
+  <pre>{{"import { socketUrl } from '../auth/auth.data';"}}</pre>
+  <p>Or import the type from the <code>auth</code> module and engage the Angular DI.</p>
+  <pre>
+{{"import { SocketUrl } from '../auth/auth.data';"}}
+...
+@Inject(SocketUrl) public socketUrl: string</pre>
+  <p>
+    The <code>user</code> is also available, and always exist in either an anonymous or authenticated mode.
+  </p>
+  <pre>{{ stringifyUser() }}</pre>
+  <div class="welcome-toolbar">
+    <foundation-text-field [(ngModel)]='welcomeMessage' name='welcomeMessage' ngDefaultControl placeholder="Enter welcome message"></foundation-text-field>
+    <foundation-button appearance="accent" (click)="onWelcomeClick()">Welcome via Alert</foundation-button>
+  </div>
+</div>

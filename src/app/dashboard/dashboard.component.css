@@ -1,0 +1,11 @@
+:host {
+  display: block;
+  margin: 15px;
+}
+
+code, pre {
+  font-family: monospace, Consolas, "courier new";
+  color: #165da3;
+  background-color: #dedede;
+  padding: 2px 5px;
+}

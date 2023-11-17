@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import './shared';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { authProviders } from './auth/auth.data';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
@@ -19,7 +20,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    /**
+     * Make auth injectables available to the application.
+     */
+    ...authProviders,
+  ],
   bootstrap: [AppComponent],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
