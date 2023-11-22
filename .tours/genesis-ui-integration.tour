@@ -1,0 +1,157 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "tourFile": "genesis-ui-integration.tour",
+  "title": "Genesis UI Integration",
+  "steps": [
+    {
+      "file": "src/app/app.module.ts",
+      "description": "## Web Component enablement\n\nEnable Web Component a.k.a Custom Element support by importing `CUSTOM_ELEMENTS_SCHEMA` and the `FormsModule`.",
+      "line": 2,
+      "selection": {
+        "start": {
+          "line": 1,
+          "character": 1
+        },
+        "end": {
+          "line": 3,
+          "character": 111
+        }
+      },
+      "title": "Web component enablement"
+    },
+    {
+      "file": "src/app/app.module.ts",
+      "description": "## CUSTOM_ELEMENTS_SCHEMA\n\nAllow Non-Angular elements to exist in the module by adding the `CUSTOM_ELEMENTS_SCHEMA` to the schemas array.",
+      "line": 31,
+      "title": "CUSTOM_ELEMENTS_SCHEMA"
+    },
+    {
+      "file": "src/app/app.module.ts",
+      "description": "## FormsModule\n\nAdd the `FormsModule` to the imports array to enable two-way data binding on our web components. ",
+      "line": 21,
+      "title": "FormsModule"
+    },
+    {
+      "file": "src/index.html",
+      "description": "## Import a Web Component via the script tag\n\nAdding a Web Component can be as simply as importing the script.",
+      "line": 10,
+      "title": "Import a Web Component via the script tag"
+    },
+    {
+      "file": "src/app/dashboard/dashboard.component.html",
+      "line": 2,
+      "selection": {
+        "start": {
+          "line": 2,
+          "character": 36
+        },
+        "end": {
+          "line": 2,
+          "character": 71
+        }
+      },
+      "description": "## Adding Web Components to your templates\n\nThen adding that Web Component to you markup with whatever attributes it needs.",
+      "title": "Adding Web Components to your templates"
+    },
+    {
+      "file": "package.json",
+      "line": 23,
+      "selection": {
+        "start": {
+          "line": 23,
+          "character": 5
+        },
+        "end": {
+          "line": 24,
+          "character": 59
+        }
+      },
+      "description": "## Installing Genesis UI components\n\nNpm install the required components. In this case we've installed foundation `@genesislcap/foundation-ui` and zero `@genesislcap/foundation-zero`.",
+      "title": "Installing Genesis UI components"
+    },
+    {
+      "file": "src/app/shared/README.md",
+      "line": 6,
+      "selection": {
+        "start": {
+          "line": 6,
+          "character": 1
+        },
+        "end": {
+          "line": 12,
+          "character": 4
+        }
+      },
+      "description": "## Shared Resources\n\nWe can organise shared resources including third-party Web Components in a central place.",
+      "title": "Shared Resources"
+    },
+    {
+      "file": "src/app/shared/zero.components.ts",
+      "description": "## Import and register \n\nEach should be imported and registered with the Genesis based Design System of choice, which in turn registers each with the underlying Web Platform itself.",
+      "line": 11,
+      "title": "Import and register"
+    },
+    {
+      "file": "src/app/shared/zero.components.ts",
+      "description": "## Registering invoked components\n\nThis involves invoking each component in the Design System's register method.",
+      "line": 20,
+      "title": "Registering invoked components"
+    },
+    {
+      "file": "src/app/shared/zero.components.ts",
+      "description": "## Optional component-level configuration\n\nWe can optionally pass configuration objects to each Genesis UI Web Component invocation to customise it further, and even create new Web Components from them inline.\n\n```ts\nzeroTextField(), // standard <zero-text-field>\nzeroTextField({  // extending standard inline to create a <narrow-text-field>\n    prefix: 'narrow',\n    styles: getNarrowTextFieldStyles,\n}),\n```",
+      "line": 21,
+      "title": "Optional component-level configuration"
+    },
+    {
+      "file": "src/app/shared/zero.components.ts",
+      "description": "## Larger Web Components and Micro Frontends\n\nSome larger Web Components and micro frontends will be pre-configured, so they simply need to be imported and referenced.\n\n```ts\nimport { EntityManagement } from '@genesislcap/foundation-entity-management';\n...\nEntityManagement; // < referenced to prevent being tree-shaking out. \n```",
+      "line": 7,
+      "title": "Larger Web Components and Micro Frontends"
+    },
+    {
+      "file": "src/app/app.module.ts",
+      "description": "## Import shared to the main app\n\nWe need to import our shared resources to make our Web Components available across the application. Generally, our Web Components are only referenced in markup, so referencing them somewhere in TS code is important to ensure they are not tree-shaken out of the final bundle.",
+      "line": 5,
+      "title": "Import shared to the main app"
+    },
+    {
+      "file": "src/app/auth/README.md",
+      "description": "## External micro frontends with internal routing systems\n\nMany external micro frontends will be accessed on routes of your application. It may make sense to encapsulate the import and configuration of these in NgModules.",
+      "line": 3,
+      "title": "External micro frontends with internal routing systems"
+    },
+    {
+      "file": "src/app/auth/auth.component.ts",
+      "description": "## Import configure hook\n\nImport the micro frontend tokens you need.",
+      "line": 3,
+      "title": "Import configure hook"
+    },
+    {
+      "file": "src/app/auth/auth.component.ts",
+      "description": "## Use the micro frontend element tag as your template\n\nHere we're using `zero-auth`, but we could also use `foundation-auth`. Each micro frontend should document their exports, and you can choose what works for you.",
+      "line": 13,
+      "title": "Use the micro frontend element tag as your template"
+    },
+    {
+      "file": "src/app/auth/auth.component.ts",
+      "description": "## CUSTOM_ELEMENTS_SCHEMA\n\nGiven the isolation here, we'll need to allow Non-Angular elements to exist in this module too by adding the `CUSTOM_ELEMENTS_SCHEMA` to the schemas array.",
+      "line": 15,
+      "title": "CUSTOM_ELEMENTS_SCHEMA"
+    },
+    {
+      "file": "src/app/auth/auth.component.ts",
+      "description": "## Configure the micro frontend\n\nHere we're configuring the micro frontend for use. Not all micro frontends will offer a config hook like this. Some are just expected to be imported and referenced, and configuration is done by adding attributes to the tags themselves. Some might expect config via our DI. Please see the readme files of each.",
+      "line": 23,
+      "title": "Configure the micro frontend"
+    },
+    {
+      "file": "src/app/app-routing.module.ts",
+      "description": "## Lazy loading our Auth Module\n\nNow we can lazily load our Auth Module which contains our configured external micro frontend when a route is visited. This is an alternative to using the shared setup given auth has many child screens and you will only need it here.\n\nFor more information or support visit [our docs](https://learn.genesis.global/docs/web/integrations/angular/).",
+      "line": 20,
+      "title": "Lazy loading our Auth Module"
+    }
+  ],
+  "isPrimary": true,
+  "description": "Helping you understand the steps required to integration Web Components and Genesis UI into your Angular Project."
+}

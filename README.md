@@ -18,7 +18,16 @@ ng generate module auth
 
 In addition, moved project onto a custom webpack builder and added `"skipLibCheck": true` to tsconfig.json.
 
-**Please see the initial commits where these steps were broken down for clarity.**
+**Please see the [initial commits](https://github.com/genesiscommunitysuccess/angular16-with-genesis-ui/commits/main) where these steps were broken down for clarity.**
+
+## Code Tours
+
+When opening the repository for the first time in either VSCode or Intellij, you should get prompted to install some recommended plugins. These include a Code Tour plugin:
+
+* [CodeTour for VSCode](https://marketplace.visualstudio.com/items?itemName=vsls-contrib.codetour)
+* [CodeTour for Intellij](https://plugins.jetbrains.com/plugin/19227-codetour)
+
+After installing, you may need to manually start the "Genesis UI Integration" code tour from the menu in your IDE.
 
 ### Adding Web Component Support
 
