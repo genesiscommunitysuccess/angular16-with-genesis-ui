@@ -50,6 +50,16 @@ const connected = await this.connect.connect(API_HOST);"}}</pre>
   </p>
   <foundation-button appearance="accent" (click)="onToggleSocketClick()">Toggle Socket</foundation-button>
   <p>
+    Once connected, you can create a use Genesis Datasources, for example:
+  </p>
+  <pre>
+{{"import { FilteredDataServerResult, getDatasource, SocketObservable } from '@genesislcap/foundation-comms';"}}
+{{"private ds = getDatasource();"}}
+{{"private dsSub: SocketObservable\<FilteredDataServerResult\>;"}}
+{{"const dsInit = await this.ds.init(options);"}}
+{{"this.dsSub = this.ds.stream.subscribe((result) => ( ... ));"}}
+  </pre>
+  <p>
     Here is an example of some more foundation-ui components with Angular application bindings:
   </p>
   <div class="welcome-toolbar">
