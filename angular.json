@@ -14,7 +14,7 @@
           "builder": "@angular-builders/custom-webpack:browser",
           "options": {
             "customWebpackConfig": {
-              "path": "./webpack.config.js",
+              "path": "webpack.config.mjs",
               "mergeStrategies": { "externals": "replace" }
             },
             "outputPath": "dist/angular16-with-genesis-ui",
@@ -67,7 +67,8 @@
               "browserTarget": "angular16-with-genesis-ui:build:production"
             },
             "development": {
-              "browserTarget": "angular16-with-genesis-ui:build:development"
+              "browserTarget": "angular16-with-genesis-ui:build:development",
+              "proxyConfig": "proxy.conf.mjs"
             }
           },
           "defaultConfiguration": "development"

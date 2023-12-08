@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
-import { AuthUser, SocketUrl, User } from '../auth/auth.data';
+import { getConnect } from '@genesislcap/foundation-comms';
+import { APIHost, AuthUser, User } from '../auth/auth.data';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,8 +8,10 @@ import { AuthUser, SocketUrl, User } from '../auth/auth.data';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
+  private connect = getConnect();
+
   constructor(
-    @Inject(SocketUrl) public socketUrl: string,
+    @Inject(APIHost) public apiHost: string,
     @Inject(AuthUser) public user: User,
   ) {}
 
@@ -20,5 +23,13 @@ export class DashboardComponent {
 
   stringifyUser() {
     return JSON.stringify(this.user, null, 2);
+  }
+
+  onToggleSocketClick = async (host = this.apiHost) => {
+    if (this.connect.isConnected) {
+      this.connect.disconnect();
+      return;
+    }
+    await this.connect.connect(host);
   }
 }

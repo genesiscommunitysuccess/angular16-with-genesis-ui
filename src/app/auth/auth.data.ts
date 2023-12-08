@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { SOCKET_URL } from '@genesislcap/foundation-auth/env';
+import { API_HOST } from '@genesislcap/foundation-utils';
 import { getUser, User } from '@genesislcap/foundation-auth/user';
 
 /**
@@ -8,17 +8,17 @@ import { getUser, User } from '@genesislcap/foundation-auth/user';
 export const authUser = getUser();
 
 /**
- * Create a web socket url reference for the application.
+ * Create an api host reference for the application.
  */
-export const socketUrl = SOCKET_URL;
+export const apiHost = API_HOST;
 
 /**
  * Add to the Angular DI system (Optional, depends on the needs of your application).
  */
-export const SocketUrl = new InjectionToken<string>('SocketUrl');
+export const APIHost = new InjectionToken<string>('APIHost');
 export const AuthUser = new InjectionToken<User>('AuthUser');
 export const authProviders = [
-  { provide: SocketUrl, useValue: socketUrl },
+  { provide: APIHost, useValue: apiHost },
   { provide: AuthUser, useValue: authUser }
 ];
 /**

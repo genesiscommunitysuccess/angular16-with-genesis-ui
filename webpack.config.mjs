@@ -1,19 +1,17 @@
-const { config } = require('dotenv');
-const path = require('path');
-const { resolveDefineConfig } = require('@genesislcap/build-kit');
-const { DefinePlugin } = require('webpack');
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { resolveDefineConfig } from '@genesislcap/build-kit';
+import webpack from 'webpack';
+import './load.env.mjs';
 
-/**
- * Load .env vars into the process
- */
-config();
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-module.exports = {
+export default {
   /**
    * Replace env vars in code.
    */
   plugins: [
-    new DefinePlugin(resolveDefineConfig(['GENX_*'])),
+    new webpack.DefinePlugin(resolveDefineConfig(['API_HOST', 'GENX_*'])),
   ],
   /**
    * Add file loaders to process the ESM bundles. Note: we should review MFs as pre-built bundles.

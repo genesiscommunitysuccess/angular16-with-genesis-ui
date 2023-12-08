@@ -1,13 +1,16 @@
 <div class="container">
   <h1>Welcome {{ user.username }}! <ion-icon name="rocket"></ion-icon></h1>
   <p>
-    Developers generally connect to the Genesis Backend via a WebSocket.
-    You can access the authenticated socket url directly from a foundation import.
+    The <code>user</code> is available at all times, in either an anonymous or authenticated mode, which you can monitor
+    in a number of ways, for example:
   </p>
-  <pre>{{"import { SOCKET_URL } from '@genesislcap/foundation-auth/env';"}}</pre>
+  <pre>{{"this.unsubscribeUser = this.user.addAuthenticationChangeListener((event: UserAuthenticationChangeEvent) => {
+    console.log('User authenticated?', event.detail); // < event.detail is a boolean, same value as user.isAuthenticated
+});"}}</pre>
   <p>
-    The authenticated socket url is: <code>{{ socketUrl }}</code>.
+    The <code>user</code> is currently:
   </p>
+  <pre>{{ stringifyUser() }}</pre>
   <p>
     As part of this repo, we've encapsulated <code>@genesislcap/foundation-auth</code> within a module named
     <code>auth</code> created via the <code>angular-cli</code>.
@@ -17,20 +20,43 @@
     container. This was done purely to provide an more comprehensive example, and is entirely optional.
   </p>
   <p>
-    Import and use the value directly from the <code>auth</code> module:
+    Post authentication, developers generally connect to the Genesis Backend via a WebSocket. You can use your own
+    libraries or native code to do this, but you can also use <code>connect</code> and the <code>API_HOST</code> from
+    foundation.
   </p>
-  <pre>{{"import { socketUrl } from '../auth/auth.data';"}}</pre>
-  <p>Or import the type from the <code>auth</code> module and engage the Angular DI.</p>
-  <pre>
-{{"import { SocketUrl } from '../auth/auth.data';"}}
-...
-@Inject(SocketUrl) public socketUrl: string</pre>
+  <pre>{{"import { getConnect } from '@genesislcap/foundation-comms';
+import { API_HOST } from '@genesislcap/foundation-utils';
+// ..
+private connect = getConnect();
+// ..
+const connected = await this.connect.connect(API_HOST);"}}</pre>
   <p>
-    The <code>user</code> is also available, and always exist in either an anonymous or authenticated mode.
+    <code>API_HOST</code> is currently: <code>{{ apiHost }}</code>.
   </p>
-  <pre>{{ stringifyUser() }}</pre>
+  <p>
+    As above, you can also import the api host from from our Angular based <code>auth</code> module which also added it to the Angular DI:
+  </p>
+  <pre>{{"import { apiHost } from '../auth/auth.data';"}}</pre>
+  <p>Here is an example of importing the type from our Angular based <code>auth</code> module to engage the Angular DI.</p>
+  <pre>
+{{"import { APIHost } from '../auth/auth.data';"}}
+...
+@Inject(APIHost) public apiHost: string</pre>
+  <p>
+    Whichever token you use, the value remains as: <code>{{ apiHost }}</code>.
+  </p>
+  <p>
+    Let's toggle a web socket connection to the Genesis Backend. Open up the console to monitor:
+  </p>
+  <foundation-button appearance="accent" (click)="onToggleSocketClick()">Toggle Socket</foundation-button>
+  <p>
+    Here is an example of some more foundation-ui components with Angular application bindings:
+  </p>
   <div class="welcome-toolbar">
     <foundation-text-field [(ngModel)]='welcomeMessage' name='welcomeMessage' ngDefaultControl placeholder="Enter welcome message"></foundation-text-field>
     <foundation-button appearance="accent" (click)="onWelcomeClick()">Welcome via Alert</foundation-button>
   </div>
+  <p>
+    For more components, visit the <a href="https://learn.genesis.global/docs/web/web-components/overview/">Genesis documentation</a>.
+  </p>
 </div>
